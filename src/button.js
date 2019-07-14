@@ -3,12 +3,17 @@
 import React from 'react'
 
 const Button = ({ children, handleClick }) => (
-    <button className='main-button' onClick={ handleClick }>{children}</button>
+    <button className='main-button' onClick={ handleClick }>
+        {children}
+    </button>
 )
 
 Button.defaultProps = {
     text: 'Ok'
 }
 
+Button.propTypes = {
+    handleClick: React.PropTypes.func.isRequired
+}
 
 export default Button

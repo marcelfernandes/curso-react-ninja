@@ -1,16 +1,40 @@
 'use strict'
 
-import React from 'react'
-import Title from './title'
+import React, { Component } from 'react'
+import Square from './square'
+import LikeButton from './like-button'
+import SearchButton from './search-button'
 
-const App = React.createClass({
-    render: function () {
+class App extends Component {
+
+    constructor () {
+        super()
+        this.state = {
+            text: 'text state'
+        }
+    }
+
+    render () {
         return (
-            <div className='container' data-id='1'>
-                <Title name='Titulo custom' lastname={{ first:'Primeiro', last:"sub"}} />
+            <div className='container' onClick={() => this.setState({
+                text: 'Outro text state'
+            })}>
+                {this.state.text}
+                {/* <LikeButton />
+                <SearchButton />
+                <Square /> */}
+
+                {/* <Button>Texto ok</Button> */}
+                
+
+                {/* <div className='container' data-id='1'>
+                {['blue', 'green', 'blue'].map((square, index) => (
+                    <Square key={index} color={ square } />
+                ))}
+                </div> */}
             </div>
         )
     }
-})
+}
 
 export default App

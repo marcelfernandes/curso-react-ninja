@@ -1,0 +1,14 @@
+'use strict'
+
+import React from 'react'
+
+const Button = ({ children, handleClick }) => (
+    <button className='main-button' onClick={ handleClick }>{children}</button>
+)
+
+Button.defaultProps = {
+    text: 'Ok'
+}
+
+
+export default Button

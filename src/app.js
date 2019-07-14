@@ -6,9 +6,8 @@ class App extends Component {
     constructor () {
         super()
         this.state = {
-            value: 'Valor inicial',
             checked: false,
-            select: '2'
+            showContent: false
         }
     }
     render () {
@@ -19,8 +18,26 @@ class App extends Component {
                     console.log('event', e)
                  }}>
                     <textarea name='textarea' defaultValue={'textarea\nvalue'} />
+                    <br /><br />
+                    <label>
+                        <input type='checkbox'
+                            checked={this.state.checked}
+                            onChange={() => {
+                                this.setState({
+                                    checked: !this.state.checked
+                                }, () => {
+                                    this.setState({
+                                        showContent: this.state.checked
+                                    })
+                                })
+                                
+                            }} 
+                        /> Mostrar conteúdo
+                    </label>
+                    <br /><br />
                     <button type='submit'>Enviar</button>
                 </form>
+                {this.state.showContent && <div>conteudo</div>}
             </div>
         )
     }

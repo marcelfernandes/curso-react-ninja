@@ -1,37 +1,51 @@
 'use strict'
 
 import React, { Component } from 'react'
+import Button from './button'
 import Square from './square'
-import LikeButton from './like-button'
-import SearchButton from './search-button'
+import Timer from './timer'
 
 class App extends Component {
 
     constructor () {
+        console.log('constructor')
         super()
         this.state = {
-            text: 'text state'
+            color: 'gray'
+            ,showTimer: true
+            ,time: 0
         }
     }
 
+    componentWillMount () {
+        console.log('component will mount')
+    }
+    componentDidMount () {
+        console.log('component did mount')
+    }
+
     render () {
+        console.log('render')
         return (
-            <div className='container' onClick={() => this.setState({
-                text: 'Outro text state'
-            })}>
-                {this.state.text}
-                {/* <LikeButton />
-                <SearchButton />
-                <Square /> */}
+            <div>
+                <Timer time={this.state.time} />
 
-                {/* <Button>Texto ok</Button> */}
-                
+                <button onClick={() => {
+                    this.setState({ time: this.state.time + 10 })
+                }}>Change props</button>
 
-                {/* <div className='container' data-id='1'>
-                {['blue', 'green', 'blue'].map((square, index) => (
-                    <Square key={index} color={ square } />
+
+                <Square color={this.state.color} />
+
+                {['red','green','blue'].map((color) => (
+                    <Button
+                        key={color}
+                        handleClick={() => this.setState({ color })}>
+                        {color}
+                    </Button>
                 ))}
-                </div> */}
+
+                
             </div>
         )
     }

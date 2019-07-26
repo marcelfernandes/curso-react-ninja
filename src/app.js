@@ -1,16 +1,46 @@
 'use strict'
 
-import React from 'react'
-import Title from './title'
+import React, { Component } from 'react'
 
-const App = React.createClass({
-    render: function () {
+class App extends Component {
+    constructor () {
+        super()
+        this.state = {
+            checked: false,
+            showContent: false
+        }
+    }
+    render () {
         return (
-            <div className='container' data-id='1'>
-                <Title name='Titulo custom' lastname={{ first:'Primeiro', last:"sub"}} />
+            <div>
+                <form onSubmit={(e) => {
+                    e.preventDefault()
+                    console.log('event', e)
+                 }}>
+                    <textarea name='textarea' defaultValue={'textarea\nvalue'} />
+                    <br /><br />
+                    <label>
+                        <input type='checkbox'
+                            checked={this.state.checked}
+                            onChange={() => {
+                                this.setState({
+                                    checked: !this.state.checked
+                                }, () => {
+                                    this.setState({
+                                        showContent: this.state.checked
+                                    })
+                                })
+                                
+                            }} 
+                        /> Mostrar conteúdo
+                    </label>
+                    <br /><br />
+                    <button type='submit'>Enviar</button>
+                </form>
+                {this.state.showContent && <div>conteudo</div>}
             </div>
         )
     }
-})
+}
 
 export default App
